@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasser &amp; Farzana · 19.07.2026</title>
+  <link rel="icon" type="image/png" href="images/Screenshot_2026-06-13_at_10.36.49-removebg-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #7D5E4A;
+      --accent: #C9A96E;
+      --accent-light: #E8D5A3;
+      --text: #F5EFE6;
+      --text-sec: #D4C4B0;
+      --card: #5C4033;
+      --error: #8B4A4A;
+      --pad: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* --- TYPOGRAPHY --- */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.8rem;
+    }
+    .section-sub {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      color: var(--text-sec);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    /* --- DIVIDER --- */
+    .divider {
+      width: 60%;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.45;
+      margin: 0 auto;
+    }
+
+    /* --- REVEAL --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { animation: none !important; }
+    }
+
+    /* ------------------------------
+       NAV
+    ------------------------------ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      transition: background 0.35s, backdrop-filter 0.35s;
+    }
+    #nav.scrolled {
+      background: rgba(80, 57, 43, 0.92);
+      backdrop-filter: blur(14px);
+    }
+    .nav-logo { height: 46px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.88;
+      transition: color 0.2s, opacity 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); opacity: 1; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 102;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--text);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.7px, 4.7px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.7px, -4.7px); }
+
+    #mob-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(70, 49, 36, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 101;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    #mob-menu.open { display: flex; }
+    #mob-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    #mob-menu a:hover { color: var(--accent); }
+
+    /* ------------------------------
+       WELCOME
+    ------------------------------ */
+    #welcome {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 2rem 80px;
+      overflow: hidden;
+    }
+
+    .welcome-inner { position: relative; z-index: 1; width: 100%; }
+
+    .welcome-venue-img {
+      width: clamp(240px, 45vw, 420px);
+      margin: 0.6rem auto 0.5rem;
+      filter: drop-shadow(0 8px 28px rgba(0,0,0,0.45));
+    }
+
+    .welcome-address {
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      margin-bottom: 0.35rem;
+    }
+
+    .welcome-datetime {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* --- NAME TYPEWRITER --- */
+    .amp-gold { color: var(--accent); }
+    .amp-gold.amp-pulse { animation: ampPulse 2s ease-in-out infinite; }
+    @keyframes ampPulse {
+      0%, 100% { color: var(--accent); text-shadow: none; }
+      50% { color: #B8892A; text-shadow: 0 0 22px rgba(184,137,42,0.55); }
+    }
+
+    .welcome-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      min-height: 1.1em;
+    }
+    .welcome-sub {
+      font-size: clamp(1rem, 2.2vw, 1.45rem);
+      letter-spacing: 0.06em;
+      color: var(--text-sec);
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Hero arch */
+    .arch-outer {
+      width: clamp(200px, 30vw, 320px);
+      aspect-ratio: 3/4;
+      border-radius: 50% 50% 0 0 / 55% 55% 0 0;
+      border: 2px solid rgba(245,239,230,0.5);
+      padding: 10px;
+      margin: 1.5rem auto 0;
+      box-shadow: 0 8px 70px rgba(0,0,0,0.35);
+    }
+    .hero-arch-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 50% 50% 0 0 / 55% 55% 0 0;
+      overflow: hidden;
+    }
+    .hero-arch-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.18); }
+
+    /* ------------------------------
+       SEATING PLAN
+    ------------------------------ */
+    #seating { padding: var(--pad) 2.5rem; }
+    .seating-wrap { max-width: 560px; margin: 0 auto; text-align: center; }
+    .seating-search-fg { position: relative; text-align: left; }
+    .seating-dropdown {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      z-index: 5;
+      background: var(--card);
+      border: 1px solid rgba(201,169,110,0.28);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      max-height: 260px;
+      overflow-y: auto;
+      display: none;
+    }
+    .seating-dropdown.open { display: block; }
+    .seating-dropdown-item {
+      padding: 0.6rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      cursor: pointer;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+    }
+    .seating-dropdown-item:last-child { border-bottom: none; }
+    .seating-dropdown-item:hover, .seating-dropdown-item.active {
+      background: rgba(201,169,110,0.12);
+      color: var(--accent);
+    }
+    .seating-dropdown-empty {
+      padding: 0.75rem 1rem;
+      color: var(--text-sec);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+    .seating-hint {
+      color: var(--text-sec);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      margin: 0.6rem 0 1.6rem;
+      text-align: left;
+    }
+    .seating-result {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.6rem;
+      margin-bottom: 1.6rem;
+    }
+    .seating-result.show { display: block; }
+    .seating-result-table {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+    .seating-result-name { color: var(--text-sec); font-size: 0.9rem; margin-top: 0.3rem; }
+    .seating-full {
+      margin-top: 2.2rem;
+      max-height: 65vh;
+      overflow-y: auto;
+      text-align: left;
+      border: 1px solid rgba(201,169,110,0.18);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      background: rgba(0,0,0,0.08);
+    }
+    .seating-table-group { margin-bottom: 1.4rem; }
+    .seating-table-group:last-child { margin-bottom: 0; }
+    .seating-table-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(201,169,110,0.25);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .seating-table-names {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      columns: 2;
+      column-gap: 1.5rem;
+    }
+    .seating-table-names li {
+      font-size: 0.85rem;
+      color: var(--text-sec);
+      padding: 0.15rem 0;
+      break-inside: avoid;
+    }
+
+    /* ------------------------------
+       QUIZ - ONE AT A TIME
+    ------------------------------ */
+    #quiz { padding: var(--pad) 2.5rem; }
+    .quiz-wrap { max-width: 560px; margin: 0 auto; perspective: 1200px; }
+    .quiz-prog-bar {
+      height: 2px;
+      background: rgba(201,169,110,0.2);
+      border-radius: 1px;
+      margin-bottom: 0.9rem;
+    }
+    .quiz-prog-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 1px;
+      transition: width 0.4s ease;
+    }
+    .quiz-prog-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .quiz-card {
+      background: var(--card);
+      border: 1px solid rgba(201,169,110,0.18);
+      border-radius: 8px;
+      padding: 2.4rem;
+      transform: rotateY(90deg);
+      transform-style: preserve-3d;
+      transition: transform 0.55s ease;
+    }
+    .quiz-card.revealed { transform: rotateY(0deg); }
+    .quiz-card.flip-out { transform: rotateY(-90deg); }
+    .quiz-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      line-height: 1.4;
+      margin-bottom: 1.8rem;
+      text-align: center;
+    }
+    .quiz-opts { display: flex; gap: 1rem; }
+    .qbtn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(201,169,110,0.35);
+      color: var(--text-sec);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.88rem;
+      letter-spacing: 0.07em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.22s, border-color 0.22s, color 0.22s, transform 0.18s;
+    }
+    .qbtn-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(201,169,110,0.3);
+    }
+    .qbtn:hover:not(:disabled) { border-color: var(--accent); color: var(--text); }
+    .qbtn.correct { background: rgba(201,169,110,0.22); border-color: var(--accent); color: var(--accent); transform: scale(1.04); }
+    .qbtn.wrong   { background: rgba(139,74,74,0.22); border-color: var(--error); color: #c47b7b; }
+    .qbtn:disabled { cursor: default; }
+    #quiz-score {
+      display: none;
+      text-align: center;
+      padding: 2.5rem;
+      background: var(--card);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      animation: fadeUp 0.5s ease;
+    }
+    #quiz-score.show { display: block; }
+    .score-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .score-msg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ------------------------------
+       STATS - TOP TRUMPS
+    ------------------------------ */
+    #stats { padding: var(--pad) 2.5rem; }
+    .trump-grid {
+      display: flex;
+      gap: 2.4rem;
+      max-width: 740px;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .trump-card {
+      flex: 1;
+      min-width: 0;
+      background: var(--card);
+      border: 2px solid rgba(201,169,110,0.45);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.38);
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease, box-shadow 0.3s ease;
+    }
+    #sgrid .trump-card:nth-child(1) { transform: translateX(-120px) rotate(-4deg); }
+    #sgrid .trump-card:nth-child(2) { transform: translateX(120px) rotate(4deg); }
+    #sgrid .trump-card.card-in { opacity: 1; transform: none; }
+    #sgrid .trump-card.card-in:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.45);
+    }
+    .trump-photo {
+      width: 100%;
+      height: 380px;
+      background: linear-gradient(160deg, #6B4F3C 0%, #4A3328 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 2px solid rgba(201,169,110,0.3);
+      overflow: hidden;
+    }
+    .trump-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .trump-photo-ph { display: flex; align-items: center; justify-content: center; }
+    .trump-name-bar {
+      background: var(--accent);
+      padding: 0.65rem 1.2rem;
+      text-align: center;
+    }
+    .trump-name-bar span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--bg);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .trump-stats { padding: 0.3rem 0 0.8rem; }
+    .trump-row {
+      display: flex;
+      align-items: center;
+      padding: 0.65rem 1.3rem;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+      gap: 0.8rem;
+    }
+    .trump-row:last-child { border-bottom: none; }
+    .trump-stat-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      flex: 1;
+    }
+    .trump-stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .trump-stat-val.trump-high { font-size: 1.2rem; }
+    .trump-stat-val.trump-italic { font-style: italic; font-size: 0.88rem; }
+    .trump-shared { text-align: center; margin-top: 2.5rem; }
+    .trump-shared-badge {
+      display: inline-block;
+      padding: 0.45rem 1.5rem;
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.28);
+      border-radius: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-sec);
+    }
+
+    .fg { margin-bottom: 1.1rem; text-align: left; }
+    .fg label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+    }
+    .fg input, .fg textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--card);
+      border: 1px solid rgba(201,169,110,0.28);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .fg input:focus, .fg textarea:focus { border-color: var(--accent); }
+    .fg textarea { height: 110px; resize: vertical; }
+    .gold-btn {
+      padding: 0.85rem 2.4rem;
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.28s, color 0.28s;
+      margin-top: 0.4rem;
+    }
+    .gold-btn:hover { background: var(--accent); color: var(--bg); }
+
+    /* ------------------------------
+       Q&A
+    ------------------------------ */
+    #qa { padding: var(--pad) 2.5rem; }
+    .accordion { max-width: 680px; margin: 0 auto; }
+    .acc-item { border-bottom: 1px solid rgba(201,169,110,0.22); }
+    .acc-item:first-child { border-top: 1px solid rgba(201,169,110,0.22); }
+    .acc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.35rem 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    .acc-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.12rem;
+      flex: 1;
+      padding-right: 1rem;
+      line-height: 1.4;
+    }
+    .acc-arrow {
+      width: 18px; height: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.35s ease;
+    }
+    .acc-arrow.open { transform: rotate(180deg); }
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding-bottom 0.4s ease;
+    }
+    .acc-body.open { max-height: 400px; padding-bottom: 1.3rem; }
+    .acc-a { font-weight: 300; color: var(--text-sec); font-size: 0.93rem; line-height: 1.7; }
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem 4rem;
+      border-top: 1px solid rgba(201,169,110,0.2);
+    }
+    .foot-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.4rem;
+    }
+    .foot-logo { height: 38px; width: auto; object-fit: contain; margin: 0 auto; opacity: 0.75; }
+
+    /* ------------------------------
+       RESPONSIVE
+    ------------------------------ */
+    @media (max-width: 768px) {
+      :root { --pad: 60px; }
+      #nav { padding: 1rem 1.4rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .arch-outer { width: clamp(180px, 68vw, 260px); padding: 8px; }
+      .trump-grid { flex-direction: column; align-items: center; }
+      .trump-card { max-width: 320px; width: 100%; }
+      section { padding: var(--pad) 1.3rem; }
+      #welcome, #seating, #quiz, #stats, #qa { padding: var(--pad) 1.3rem; }
+      .seating-table-names { columns: 1; }
+      .seating-full { max-height: 55vh; padding: 1rem; }
+    }
+    /* ----- ADMIN ----- */
+    #admin-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(14,9,5,0.96); z-index: 10000;
+      overflow-y: auto; padding: 2rem 1rem;
+    }
+    .admin-close {
+      position: fixed; top: 1.1rem; right: 1.4rem;
+      background: none; border: none; color: var(--text-sec);
+      font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0.3rem 0.5rem;
+    }
+    .admin-close:hover { color: var(--gold); }
+    .admin-panel { max-width: 680px; margin: 0 auto; font-family: 'Jost', sans-serif; }
+    #admin-login-box { text-align: center; margin-top: 28vh; }
+    .admin-pw-row { display: flex; gap: 0.5rem; justify-content: center; max-width: 340px; margin: 0 auto 0.75rem; }
+    .admin-pw-input {
+      flex: 1; background: var(--card); border: 1px solid rgba(201,169,110,0.3);
+      color: var(--text); padding: 0.7rem 1rem; border-radius: 4px;
+      font-family: 'Jost', sans-serif; font-size: 0.95rem;
+    }
+    .admin-pw-input:focus { outline: none; border-color: var(--gold); }
+    .admin-submit {
+      background: var(--gold); color: #1C1209; border: none;
+      padding: 0.7rem 1.4rem; font-family: 'Jost', sans-serif;
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; border-radius: 3px; white-space: nowrap;
+    }
+    .admin-submit:hover { background: var(--accent); }
+    .admin-err { color: #e07070; font-size: 0.82rem; }
+    .admin-section { margin-bottom: 3rem; }
+    .admin-section h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--gold);
+      border-bottom: 1px solid rgba(201,169,110,0.2); padding-bottom: 0.45rem; margin-bottom: 1.1rem;
+    }
+    .admin-entry {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 1rem;
+    }
+    .admin-entry-text { flex: 1; font-size: 0.88rem; line-height: 1.45; }
+    .admin-del-btn {
+      background: none; border: 1px solid rgba(200,80,80,0.35); color: rgba(200,80,80,0.75);
+      border-radius: 3px; padding: 0.18rem 0.5rem; font-size: 0.72rem; cursor: pointer; flex-shrink: 0;
+    }
+    .admin-del-btn:hover { background: rgba(200,80,80,0.12); border-color: rgba(200,80,80,0.65); color: #e07070; }
+    .quiz-score-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem;
+      margin-bottom: 1.4rem; text-align: center;
+    }
+    .qsg-cell { background: var(--card); border: 1px solid rgba(201,169,110,0.15); border-radius: 4px; padding: 0.5rem 0.2rem; }
+    .qsg-score { font-size: 0.7rem; color: var(--text-sec); letter-spacing: 0.08em; }
+    .qsg-count { font-size: 1.25rem; font-weight: 600; color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- --- NAV --- -->
+<nav id="nav">
+  <img src="images/Screenshot_2026-06-13_at_10.36.49-removebg-preview.png" alt="Nasser &amp; Farzana" class="nav-logo">
+  <ul class="nav-links">
+    <li><a href="#welcome">Welcome</a></li>
+    <li><a href="#seating">Seating Plan</a></li>
+    <li><a href="#quiz">Who's Who?</a></li>
+    <li><a href="#stats">Nasser vs Farzana</a></li>
+    <li><a href="#qa">FAQs</a></li>
+  </ul>
+  <button class="hamburger" id="ham" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mob-menu">
+  <a href="#welcome">Welcome</a>
+  <a href="#seating">Seating Plan</a>
+  <a href="#quiz">Who's Who?</a>
+  <a href="#stats">Nasser vs Farzana</a>
+  <a href="#qa">FAQs</a>
+</div>
+
+<!-- ------------------------------
+     1. WELCOME
+------------------------------ -->
+<section id="welcome">
+  <div class="welcome-inner">
+    <h1 class="welcome-h1"></h1>
+    <img src="images/Screenshot_2026-06-13_at_10.17.49-removebg-preview.png" alt="Quendon Hall" class="welcome-venue-img">
+    <p class="welcome-address">Parklands, Quendon Hall, Quendon, Essex, CB11 3XN</p>
+    <p class="welcome-datetime">19th July 2026 &middot; 12pm</p>
+
+    <div class="arch-outer">
+      <div class="hero-arch-wrap">
+        <img src="images/IMG_2325 2.jpg" alt="Nasser and Farzana">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ------------------------------
+     2. SEATING PLAN
+------------------------------ -->
+<section id="seating">
+  <h2 class="section-title reveal">Seating Plan</h2>
+  <p class="section-sub reveal">Find your table below.</p>
+
+  <div class="seating-wrap reveal">
+    <div class="fg seating-search-fg">
+      <label for="seating-search">Find your name</label>
+      <input type="text" id="seating-search" autocomplete="off" placeholder="Start typing your name&hellip;">
+      <div class="seating-dropdown" id="seating-dropdown"></div>
+    </div>
+    <p class="seating-hint">
+      Some guests are listed individually and some as a family group (e.g. &ldquo;Family of Smith&rdquo;) &mdash;
+      if you can't find your own name, try searching your surname or family name instead.
+    </p>
+
+    <div class="seating-result" id="seating-result"></div>
+
+    <button class="gold-btn" id="seating-toggle-btn" type="button">View Full Table Plan</button>
+
+    <div class="seating-full" id="seating-full" hidden></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ------------------------------
+     3. QUIZ - ONE AT A TIME
+------------------------------ -->
+<section id="quiz">
+  <h2 class="section-title reveal">Who's Who?</h2>
+  <p class="section-sub reveal">Think you know us? See if we agree…</p>
+
+  <div class="quiz-wrap reveal">
+    <div class="quiz-prog-bar"><div class="quiz-prog-fill" id="quiz-prog-fill"></div></div>
+    <p class="quiz-prog-label" id="quiz-prog-label">Question 1 of 5</p>
+
+    <div class="quiz-card" id="quiz-card">
+      <p class="quiz-q" id="quiz-q-text"></p>
+      <div class="quiz-opts">
+        <button class="qbtn" id="qbtn-nasser"><img class="qbtn-avatar" src="images/Screenshot 2026-06-14 at 19.11.30.png" alt="">Nasser</button>
+        <button class="qbtn" id="qbtn-farzana"><img class="qbtn-avatar" src="images/Screenshot 2026-06-14 at 19.01.06.png" alt="">Farzana</button>
+      </div>
+    </div>
+
+    <div id="quiz-score">
+      <div class="score-num" id="sc-num"></div>
+      <p class="score-msg" id="sc-msg"></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ------------------------------
+     4. NASSER VS FARZANA
+------------------------------ -->
+<section id="stats">
+  <h2 class="section-title reveal">Nasser vs Farzana</h2>
+  <p class="section-sub reveal">Choose your fighter</p>
+
+  <div class="trump-grid" id="sgrid">
+
+    <!-- NASSER -->
+    <div class="trump-card">
+      <div class="trump-photo">
+        <img src="images/Screenshot 2026-06-14 at 19.11.30.png" alt="Nasser">
+      </div>
+      <div class="trump-name-bar"><span>Nasser</span></div>
+      <div class="trump-stats">
+        <div class="trump-row"><span class="trump-stat-name">Crisp Addiction</span><span class="trump-stat-val trump-italic">Death row meal-worthy</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Picks Restaurant</span><span class="trump-stat-val trump-high">80</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Wins Arguments</span><span class="trump-stat-val trump-italic">He can dream</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Mayo Addiction</span><span class="trump-stat-val trump-high">100000</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Lateness</span><span class="trump-stat-val">32</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Remembers important dates</span><span class="trump-stat-val trump-italic">Occasionally</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Cooking</span><span class="trump-stat-val trump-italic">Makes good reservations</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Notes app organisation</span><span class="trump-stat-val trump-high">100</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Airport dad-ness</span><span class="trump-stat-val">-50</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Likelihood of checking a score mid-wedding</span><span class="trump-stat-val">60</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Tidiness</span><span class="trump-stat-val trump-high">80</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Ability to follow a map</span><span class="trump-stat-val trump-high">75</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Gift ideas</span><span class="trump-stat-val trump-italic">It's the effort that counts</span></div>
+      </div>
+    </div>
+
+    <!-- FARZANA -->
+    <div class="trump-card">
+      <div class="trump-photo">
+        <img src="images/Screenshot 2026-06-14 at 19.01.06.png" alt="Farzana">
+      </div>
+      <div class="trump-name-bar"><span>Farzana</span></div>
+      <div class="trump-stats">
+        <div class="trump-row"><span class="trump-stat-name">Chocolate Addiction</span><span class="trump-stat-val trump-high">91</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Vetoes Restaurant</span><span class="trump-stat-val">65</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Wins Arguments</span><span class="trump-stat-val trump-high">99</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Ketchup Addiction</span><span class="trump-stat-val">59</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Lateness</span><span class="trump-stat-val trump-italic">You should've said 30 mins earlier!</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Remembers important dates</span><span class="trump-stat-val trump-high">95</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Cooking</span><span class="trump-stat-val trump-high">85</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Notes app organisation</span><span class="trump-stat-val">75</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Airport dad-ness</span><span class="trump-stat-val trump-italic">4 hours early pls</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Likelihood of checking a score mid-wedding</span><span class="trump-stat-val trump-italic">Please no</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Tidiness</span><span class="trump-stat-val trump-italic">Beauty behind the madness - The Weeknd</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Ability to follow a map</span><span class="trump-stat-val trump-italic">It's only a 4 min detour</span></div>
+        <div class="trump-row"><span class="trump-stat-name">Gift ideas</span><span class="trump-stat-val trump-high">100</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ------------------------------
+     6. Q&A
+------------------------------ -->
+<section id="qa">
+  <h2 class="section-title reveal">Good to Know</h2>
+  <div class="divider" style="margin-bottom:2.8rem;"></div>
+
+  <div class="accordion">
+
+    <div class="acc-item reveal">
+      <div class="acc-head">
+        <span class="acc-q">What's the colour theme?</span>
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body"><p class="acc-a">Women: Pastels (except Pink). Men: Western suits - the lighter the better!</p></div>
+    </div>
+
+    <div class="acc-item reveal">
+      <div class="acc-head">
+        <span class="acc-q">Is parking available?</span>
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body"><p class="acc-a">Yes, Quendon Hall has ample parking for all guests. Follow the signage on arrival.</p></div>
+    </div>
+
+    <div class="acc-item reveal">
+      <div class="acc-head">
+        <span class="acc-q">Any dietary requirements?</span>
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body"><p class="acc-a">All food will be Halal with vegetarian options available. If you have specific allergies, please mention them to the catering staff.</p></div>
+    </div>
+
+    <div class="acc-item reveal">
+      <div class="acc-head">
+        <span class="acc-q">What do we think of Tottenham?</span>
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="acc-body"><p class="acc-a">...</p></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p class="foot-name">Nasser &amp; Farzana &middot; 19.07.2026</p>
+  <img src="images/Screenshot_2026-06-13_at_10.36.49-removebg-preview.png" alt="Logo" class="foot-logo">
+</footer>
+
+<div style="text-align:center;padding:1rem 0 2.5rem;">
+  <button onclick="document.getElementById('admin-overlay').style.display='block'" style="background:none;border:none;color:rgba(201,169,110,0.2);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;padding:0.5rem 1rem;">admin</button>
+</div>
+
+<div id="admin-overlay">
+  <button class="admin-close" onclick="adminClose()">&#215;</button>
+  <div class="admin-panel">
+
+    <div id="admin-login-box">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold);margin-bottom:1.5rem;letter-spacing:0.06em;">Admin</p>
+      <div class="admin-pw-row">
+        <input type="password" id="admin-pw" class="admin-pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')adminLogin()">
+        <button class="admin-submit" onclick="adminLogin()">Enter</button>
+      </div>
+      <p id="admin-err" class="admin-err" style="display:none">Incorrect password</p>
+    </div>
+
+    <div id="admin-content" style="display:none">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--gold);margin-bottom:2.5rem;letter-spacing:0.06em;">Admin Panel</p>
+
+      <div class="admin-section">
+        <h3>Quiz Attempts</h3>
+        <p id="admin-quiz-total" style="font-size:0.82rem;color:var(--text-sec);margin-bottom:1rem;"></p>
+        <div class="quiz-score-grid" id="admin-quiz-grid"></div>
+        <div id="admin-quiz-list"></div>
+      </div>
+
+      <div class="admin-section">
+        <h3>Travel Suggestions</h3>
+        <div id="admin-recs-list"></div>
+      </div>
+
+      <div class="admin-section">
+        <h3>Date Night Ideas</h3>
+        <div id="admin-dates-list"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+  firebase.initializeApp(window.WEDDING_CONFIG.firebase);
+  window._db = firebase.firestore();
+</script>
+<script>
+// --- NAV ---
+const navEl = document.getElementById('nav');
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mob-menu');
+window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrollY > 50));
+ham.addEventListener('click', () => {
+  ham.classList.toggle('open');
+  mob.classList.toggle('open');
+  document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+});
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  ham.classList.remove('open');
+  mob.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// --- TYPEWRITER ---
+(function() {
+  const h1 = document.querySelector('.welcome-h1');
+  const full = 'Nasser & Farzana';
+  h1.innerHTML = ' ';
+  let ci = 0;
+  const iv = setInterval(() => {
+    ci++;
+    const typed = full.slice(0, ci);
+    const ai = typed.indexOf('&');
+    if (ai === -1) {
+      h1.textContent = typed;
+    } else {
+      h1.innerHTML = typed.slice(0, ai) + '<span class="amp-gold">&amp;</span>' + typed.slice(ai + 1);
+    }
+    if (ci >= full.length) {
+      clearInterval(iv);
+      const amp = h1.querySelector('.amp-gold');
+      if (amp) setTimeout(() => amp.classList.add('amp-pulse'), 300);
+    }
+  }, 75);
+})();
+
+// --- SCROLL REVEAL ---
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }});
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// --- SEATING PLAN DATA ---
+const SEATING = [
+  { table: 'Head Table', name: 'Dr Aisha Chowdhury' },
+  { table: 'Head Table', name: 'Mr Sybghat ur Rahim' },
+  { table: 'Head Table', name: 'Mst Haaris Rahim' },
+  { table: 'Head Table', name: 'Mr Nasser Chowdhury' },
+  { table: 'Head Table', name: 'Mrs Farzana Uddin' },
+  { table: 'Head Table', name: 'Prof Tahseen Chowdhury' },
+  { table: 'Head Table', name: 'Dr Shawarna Lasker' },
+  { table: 'Head Table', name: 'Ms Amber Chowdhury' },
+  { table: 'Head Table', name: 'Mrs Jahanara Lasker' },
+  { table: 'Head Table', name: 'Mrs Najma Chowdhury' },
+  { table: 'Head Table', name: 'Kamaly' },
+  { table: 'Head Table', name: 'Janna' },
+  { table: 'Head Table', name: 'Lalafa' },
+  { table: 'Head Table', name: 'Lalafa husband' },
+  { table: 'Head Table', name: 'Ruhi' },
+  { table: 'Head Table', name: 'Ruhi husband' },
+  { table: 'Head Table', name: 'Farhad' },
+
+  { table: 'Table 1', name: 'Mrs Kona Haque' },
+  { table: 'Table 1', name: 'Mr Sajjad Haque' },
+  { table: 'Table 1', name: 'Mrs Tasnim Khan' },
+  { table: 'Table 1', name: 'Mrs Azim Khan' },
+  { table: 'Table 1', name: 'Mrs Lushana Akhtar-Lasker' },
+  { table: 'Table 1', name: 'Mr Azizur Rahim' },
+  { table: 'Table 1', name: 'Dr Rukhsana Safa' },
+  { table: 'Table 1', name: 'Mrs Sheata Karim' },
+  { table: 'Table 1', name: 'Mrs Roshe Ara Haque' },
+  { table: 'Table 1', name: 'Mr Faysal Ahmed' },
+
+  { table: 'Table 2', name: 'Miss Lily Akhtar-Lasker' },
+  { table: 'Table 2', name: 'Miss Luna Akhtar-Lasker' },
+  { table: 'Table 2', name: 'Miss Leila Akhtar-Lasker' },
+  { table: 'Table 2', name: 'Mr Ameen Khan' },
+  { table: 'Table 2', name: 'Miss Jamila Khan' },
+  { table: 'Table 2', name: 'Mr Sami Haque' },
+  { table: 'Table 2', name: 'Miss Yasmin Haque' },
+  { table: 'Table 2', name: 'Mr Ayden Karim' },
+  { table: 'Table 2', name: 'Miss Sophie Karim' },
+  { table: 'Table 2', name: 'Dr Umayair Ullah' },
+  { table: 'Table 2', name: 'Mr Samer Ullah' },
+  { table: 'Table 2', name: 'Mrs Tasnim Ullah' },
+
+  { table: 'Table 3', name: 'Dr Anis Manzur Khan' },
+  { table: 'Table 3', name: 'Mrs Rezina Manzur' },
+  { table: 'Table 3', name: 'Mrs Parvin Hussain' },
+  { table: 'Table 3', name: 'Mr Mohammed Alamgir' },
+  { table: 'Table 3', name: 'Mrs Marjina Alamgir' },
+  { table: 'Table 3', name: 'Mr Md Shamsul Alam' },
+  { table: 'Table 3', name: 'Mrs Bilquis Alam' },
+  { table: 'Table 3', name: 'Mrs Kalam' },
+  { table: 'Table 3', name: 'Mrs Najma Ahmed' },
+  { table: 'Table 3', name: 'Mrs Rehana Rahman' },
+
+  { table: 'Table 4', name: 'Dr Andleeb Ahmed' },
+  { table: 'Table 4', name: 'Mr Helaluddin Ahmed' },
+  { table: 'Table 4', name: 'Mr Usmaan Ahmed' },
+  { table: 'Table 4', name: 'Dr Fauzaan Ahmed' },
+  { table: 'Table 4', name: 'Mr Zeeshaan Ahmed' },
+  { table: 'Table 4', name: 'Mrs Memoona Fatima' },
+  { table: 'Table 4', name: 'Mrs Rahela Rahim' },
+  { table: 'Table 4', name: 'Mr Enam Rahim' },
+  { table: 'Table 4', name: 'Mr Ismail Rahim' },
+  { table: 'Table 4', name: 'Miss Safa Rahim' },
+
+  { table: 'Table 5', name: 'Miss Zunairah Mahfuz' },
+  { table: 'Table 5', name: 'Mr Reaz Alam' },
+  { table: 'Table 5', name: 'Dr Zeenat Farzana' },
+  { table: 'Table 5', name: 'Mst Zaeem Alam' },
+  { table: 'Table 5', name: 'Miss Zaira Alam Barnana' },
+  { table: 'Table 5', name: 'Mrs Shazeen Kalam' },
+  { table: 'Table 5', name: 'Mr Russell Kalam' },
+  { table: 'Table 5', name: 'Mst Raed Kalam' },
+  { table: 'Table 5', name: 'Miss Raaiyah Kalam Russell' },
+
+  { table: 'Table 6', name: 'Mr Shahid Hussain' },
+  { table: 'Table 6', name: 'Mrs Lita Khanom' },
+  { table: 'Table 6', name: 'Miss Shubad Hussain' },
+  { table: 'Table 6', name: 'Mr Rafid Hussain Dalia' },
+  { table: 'Table 6', name: 'Mrs Dalia Rahman' },
+  { table: 'Table 6', name: 'Mr Md Imran Bhuiyan' },
+  { table: 'Table 6', name: 'Miss Junainah Aaeedah' },
+  { table: 'Table 6', name: 'Miss Anaiza Bhuiyan' },
+  { table: 'Table 6', name: 'Mrs Misty Rumman' },
+  { table: 'Table 6', name: 'Mr Mamun Abdullah' },
+  { table: 'Table 6', name: 'Mst Mahin Abdullah' },
+  { table: 'Table 6', name: 'Miss Mahiba Abdullah' },
+  { table: 'Table 6', name: 'Mst Omar Abdullah' },
+
+  { table: 'Table 7', name: 'Dr Shaila Khan' },
+  { table: 'Table 7', name: 'Mr Ronnie Khan' },
+  { table: 'Table 7', name: 'Mst Rafael Khan' },
+  { table: 'Table 7', name: 'Miss Sadie Khan' },
+  { table: 'Table 7', name: 'Mr Tanvir Alam' },
+  { table: 'Table 7', name: 'Mrs Farzana Shumi' },
+  { table: 'Table 7', name: 'Mrs Donna Kelly' },
+  { table: 'Table 7', name: 'Mr Ben Kelly' },
+  { table: 'Table 7', name: 'Miss Sarina Kelly' },
+  { table: 'Table 7', name: 'Mst Gabriel Kelly' },
+
+  { table: 'Table 8', name: 'Mr Reda Mojlish' },
+  { table: 'Table 8', name: 'Dr Sultana Mojlish' },
+  { table: 'Table 8', name: 'Mst Idris Mojlish Reda' },
+  { table: 'Table 8', name: 'Mr Ronnie Mojlish' },
+  { table: 'Table 8', name: 'Mrs Farhana Mojlish' },
+  { table: 'Table 8', name: 'Miss Liyana Mojlish' },
+  { table: 'Table 8', name: 'Mrs Rifath Sultana' },
+  { table: 'Table 8', name: 'Mr Mohammad Bari' },
+  { table: 'Table 8', name: 'Miss Amairah Bari' },
+  { table: 'Table 8', name: 'Mst Aydin Bari' },
+
+  { table: 'Table 9', name: 'Mr Faisal Alam' },
+  { table: 'Table 9', name: 'Mrs Raha Noah' },
+  { table: 'Table 9', name: 'Miss Ayat Alam' },
+  { table: 'Table 9', name: 'Mst Faris Alam' },
+  { table: 'Table 9', name: 'Mr Saif Alam' },
+  { table: 'Table 9', name: 'Mrs Sabrina Kamal' },
+  { table: 'Table 9', name: 'Mr Manzoorul Abedin' },
+  { table: 'Table 9', name: 'Mst Faraaz Manzoor' },
+  { table: 'Table 9', name: 'Mst Zaraar Manzoor' },
+  { table: 'Table 9', name: 'Mst Zohan Manzoor' },
+
+  { table: 'Table 10', name: 'Mr Anis Alamgir' },
+  { table: 'Table 10', name: 'Mrs Sarrah Peerbux' },
+  { table: 'Table 10', name: 'Mst Aziz Alamgir' },
+  { table: 'Table 10', name: 'Mr Junaid Rabbi' },
+  { table: 'Table 10', name: 'Mrs Sughera Hashim' },
+  { table: 'Table 10', name: 'Miss Sofia Rabbi Puplu' },
+  { table: 'Table 10', name: 'Mr Nesar Uddin' },
+  { table: 'Table 10', name: 'Mrs Nasrina Yeamin' },
+  { table: 'Table 10', name: 'Miss Sahria Uddin' },
+  { table: 'Table 10', name: 'Miss Suha Uddin' },
+
+  { table: 'Table 11', name: 'Mr Anis Ahmed' },
+  { table: 'Table 11', name: 'Mrs Suhana Ahmed' },
+  { table: 'Table 11', name: 'Mr Arsalan Ahmed' },
+  { table: 'Table 11', name: 'Mrs Manal Ejaz' },
+  { table: 'Table 11', name: 'Mr Nawaz Alamgir' },
+  { table: 'Table 11', name: 'Mrs Maleka Mozumdar' },
+  { table: 'Table 11', name: 'Mst Zayid Alamgir' },
+  { table: 'Table 11', name: 'Mr Shams Mahmud' },
+  { table: 'Table 11', name: 'Mr Shayan Ahmed' },
+  { table: 'Table 11', name: 'Mrs Sameeya Rahman' },
+  { table: 'Table 11', name: 'Mr Moshiur Rahman' },
+  { table: 'Table 11', name: 'Miss Saffiyra Rahman' },
+
+  { table: 'Table 12', name: 'Dr Iram Lodhi' },
+  { table: 'Table 12', name: 'Dr Naheed Lodhi' },
+  { table: 'Table 12', name: 'Mrs Afshan Shamas' },
+  { table: 'Table 12', name: 'Mr Alim Shamas' },
+  { table: 'Table 12', name: 'Mrs Rumana Malik' },
+  { table: 'Table 12', name: 'Mr Suman Malik' },
+  { table: 'Table 12', name: 'Mrs Shabnam Ahmed' },
+  { table: 'Table 12', name: 'Mr Javed Ahmed' },
+  { table: 'Table 12', name: 'Mrs Shanaz Ahmed' },
+  { table: 'Table 12', name: 'Mr Kayser Ahmed' },
+  { table: 'Table 12', name: 'Mrs Shehnaz Razak' },
+  { table: 'Table 12', name: 'Mr Mohammed Sadiq' },
+
+  { table: 'Table 13', name: 'Mr Awalad Hussain' },
+  { table: 'Table 13', name: 'Mrs Beauty Hussain' },
+  { table: 'Table 13', name: 'Mr Md Anamul Hoque' },
+  { table: 'Table 13', name: 'Mrs Sonia Habib Lina' },
+  { table: 'Table 13', name: 'Mr Rezaul Mirdha' },
+  { table: 'Table 13', name: 'Mrs Mosammat Jayed' },
+  { table: 'Table 13', name: 'Mrs Rawshanra Lina' },
+  { table: 'Table 13', name: 'Miss Nilima Ahmed' },
+  { table: 'Table 13', name: 'Mr Prince Ahmed' },
+
+  { table: 'Table 14', name: 'Dr Farzana Ahmed' },
+  { table: 'Table 14', name: 'Mr Moin Ahmed' },
+  { table: 'Table 14', name: 'Dr Zaker Ullah' },
+  { table: 'Table 14', name: 'Dr Iffat Azim' },
+  { table: 'Table 14', name: 'Mrs Shahana Rahman' },
+  { table: 'Table 14', name: 'Dr Saidur Rahman' },
+  { table: 'Table 14', name: 'Mr Shafi Chowdhury' },
+  { table: 'Table 14', name: 'Mrs Sabrin Chowdhury' },
+  { table: 'Table 14', name: 'Mr Mohammed Sanaullah' },
+  { table: 'Table 14', name: 'Mrs Roshan Sanaullah' },
+
+  { table: 'Table 15', name: 'Mrs Farhat Siddiqui' },
+  { table: 'Table 15', name: 'Mr Shamim Siddiqui' },
+  { table: 'Table 15', name: 'Mrs Haroona Chugtai' },
+  { table: 'Table 15', name: 'Mrs Maimoona Malik' },
+  { table: 'Table 15', name: 'Dr Amjad Malik' },
+  { table: 'Table 15', name: 'Mrs Masooma Bari' },
+  { table: 'Table 15', name: 'Mrs Raisa Hafeez' },
+  { table: 'Table 15', name: 'Mr Khalil Hafeez' },
+  { table: 'Table 15', name: 'Mrs Taslima Begum' },
+  { table: 'Table 15', name: 'Mr Ranu Miah' },
+  { table: 'Table 15', name: 'Mrs Zaheeda Sohoye' },
+  { table: 'Table 15', name: 'Mr Azid Sohoye' },
+
+  { table: 'Table 16', name: 'Dr Naeem Malik' },
+  { table: 'Table 16', name: 'Mrs Rahila Malik' },
+  { table: 'Table 16', name: 'Dr Haroon Malik' },
+  { table: 'Table 16', name: 'Mr Umar Malik' },
+  { table: 'Table 16', name: 'Mr Adam Malik' },
+  { table: 'Table 16', name: 'Mrs Kathaleen Malik' },
+  { table: 'Table 16', name: 'Miss Aneesa Malik' },
+  { table: 'Table 16', name: 'Mr Jaspal Gillar' },
+  { table: 'Table 16', name: 'Mrs Kamaljeet Gillar' },
+  { table: 'Table 16', name: 'Mr Harit Gillar' },
+  { table: 'Table 16', name: 'Miss Avaneet Gillar' },
+
+  { table: 'Table 17', name: 'Dr Salma Ahmed' },
+  { table: 'Table 17', name: 'Prof Anisur Rahman' },
+  { table: 'Table 17', name: 'Dr MS Bobby Huda' },
+  { table: 'Table 17', name: 'Dr Sitara Khan' },
+  { table: 'Table 17', name: 'Dr Peter Jacob' },
+  { table: 'Table 17', name: 'Dr Ritwika Mallik' },
+  { table: 'Table 17', name: 'Mr Mengistab Berhane' },
+  { table: 'Table 17', name: 'Ms Dorcas Mukuba' },
+  { table: 'Table 17', name: 'Ms Janet Campbell' },
+  { table: 'Table 17', name: 'Ms Svetla Stefanova' },
+
+  { table: 'Table 18', name: 'Dr Sumita Sinha' },
+  { table: 'Table 18', name: 'Mr Babatunde Sokoya' },
+  { table: 'Table 18', name: 'Mrs Anne Stamp' },
+  { table: 'Table 18', name: 'Mrs Lorraine Abery' },
+  { table: 'Table 18', name: 'Mrs Nikki Klein' },
+  { table: 'Table 18', name: 'Ms Caron Furlong' },
+  { table: 'Table 18', name: 'Ms Louisa Hulme' },
+  { table: 'Table 18', name: 'Ms Patricia Arnold' },
+  { table: 'Table 18', name: 'Ms Valentina Nicolau' },
+
+  { table: 'Table 19', name: 'Dr Cem Aksogut' },
+  { table: 'Table 19', name: 'Dr Francoise Tranmer' },
+  { table: 'Table 19', name: 'Mr Stuart Phillips' },
+  { table: 'Table 19', name: 'Dr Hanna Dinger' },
+  { table: 'Table 19', name: 'Dr Hina Masood' },
+  { table: 'Table 19', name: 'Dr Kibria Abdul-Mukith' },
+  { table: 'Table 19', name: 'Dr Mahmuda Rahman' },
+  { table: 'Table 19', name: 'Dr Nura Jesmin' },
+  { table: 'Table 19', name: 'Dr Saud Jiwani' },
+
+  { table: 'Table 20', name: 'Dr Vidya Mistry' },
+  { table: 'Table 20', name: 'Dr Munesh Mistry' },
+  { table: 'Table 20', name: 'Mr Anthony Godfrey' },
+  { table: 'Table 20', name: 'Mrs Alison Godrey' },
+  { table: 'Table 20', name: 'Mr Peter Farrier' },
+  { table: 'Table 20', name: 'Mr Shantilal Patel' },
+  { table: 'Table 20', name: 'Mrs Jaya Patel' },
+  { table: 'Table 20', name: 'Dr Shabana Ali' },
+  { table: 'Table 20', name: 'Mr Wajahat Ali' },
+
+  { table: 'Table 21', name: 'Ms Sami Majid' },
+  { table: 'Table 21', name: 'Mrs Atefeh Eshraghi' },
+  { table: 'Table 21', name: 'Mrs Hiroko Okumori' },
+  { table: 'Table 21', name: 'Mr Nauman Javid' },
+  { table: 'Table 21', name: 'Mrs Molly Islam' },
+  { table: 'Table 21', name: 'Mr Neaz Islam' },
+  { table: 'Table 21', name: 'Mrs Raana Ali' },
+  { table: 'Table 21', name: 'Mr Rintu Ali' },
+  { table: 'Table 21', name: 'Mrs Riffat Husen' },
+  { table: 'Table 21', name: 'Mr Altaf Bhurawalla' },
+  { table: 'Table 21', name: 'Mrs Zakiya Ali' },
+  { table: 'Table 21', name: 'Mr Sarfraz Ali' },
+
+  { table: 'Table 22', name: 'Dr Naveed Syed' },
+  { table: 'Table 22', name: 'Dr Hamida Syed' },
+  { table: 'Table 22', name: 'Dr Samina Cassam' },
+  { table: 'Table 22', name: 'Dr Khaled Cassam' },
+  { table: 'Table 22', name: 'Mr Masud Haque' },
+  { table: 'Table 22', name: 'Mrs Nadia Haque' },
+  { table: 'Table 22', name: 'Mrs Keya Majid' },
+  { table: 'Table 22', name: 'Dr Faruk Majid' },
+  { table: 'Table 22', name: 'Mrs Rabecca Faisal' },
+  { table: 'Table 22', name: 'Mr Paul Downes' },
+  { table: 'Table 22', name: 'Mr Ihsaan Faisal' },
+  { table: 'Table 22', name: 'Miss Ammaarah Faisal' },
+
+  { table: 'Table 23', name: 'Dr Huma Vohra' },
+  { table: 'Table 23', name: 'Dr Hunaid Vohra' },
+  { table: 'Table 23', name: 'Dr Johra Alam' },
+  { table: 'Table 23', name: 'Mr Adnan Alam' },
+  { table: 'Table 23', name: 'Mrs Samiha Ahmed' },
+  { table: 'Table 23', name: 'Mr Niloy Zaman' },
+  { table: 'Table 23', name: 'Mst Yahya Zaman' },
+  { table: 'Table 23', name: 'Dr Inayah Zaheen' },
+  { table: 'Table 23', name: 'Mr Munaj Ahmed' },
+  { table: 'Table 23', name: 'Miss Amana Ahmed' },
+  { table: 'Table 23', name: '(Mst Ziyad Ahmed - infant)' },
+
+  { table: 'Table 24', name: 'Mr Zain Waheed' },
+  { table: 'Table 24', name: 'Mr Haris Seedat' },
+  { table: 'Table 24', name: 'Mr Bepul Shahab' },
+  { table: 'Table 24', name: 'Mr Aamir Abdulgani' },
+  { table: 'Table 24', name: 'Mr Kavi Mehan' },
+  { table: 'Table 24', name: 'Mr Akil Chhabu' },
+  { table: 'Table 24', name: 'Mr Abu Bakr Samad' },
+  { table: 'Table 24', name: 'Mr Usayd Hasan' },
+  { table: 'Table 24', name: 'Mr Qamil Pajaziti' },
+  { table: 'Table 24', name: 'Mr Mohamed Malem' },
+  { table: 'Table 24', name: 'Mr Iban Uddin' },
+  { table: 'Table 24', name: 'Mr Fahim Mohammed' },
+
+  { table: 'Table 25', name: 'Mr Ved Patwardhan' },
+  { table: 'Table 25', name: 'Ms Shivani Shah' },
+  { table: 'Table 25', name: 'Mr Talveen Sian' },
+  { table: 'Table 25', name: 'Mr Abdul-Raouf Irshad' },
+  { table: 'Table 25', name: 'Mrs Aiza Shaheen' },
+  { table: 'Table 25', name: 'Mr Abdullah Shakeel' },
+  { table: 'Table 25', name: 'Mrs Saadia Jhetam' },
+  { table: 'Table 25', name: 'Mr Naveen Nandakumar' },
+  { table: 'Table 25', name: 'Mr Sahil Handa' },
+  { table: 'Table 25', name: 'Ms Riya Shah' },
+  { table: 'Table 25', name: 'Ms Daffodil Dhayaa' },
+
+  { table: 'Table 26', name: 'Ms Arundeep Basra' },
+  { table: 'Table 26', name: 'Mr Oni Bhaumik' },
+  { table: 'Table 26', name: 'Mr Zain Mobarik' },
+  { table: 'Table 26', name: 'Mr Muhammad Khan' },
+  { table: 'Table 26', name: 'Mr Yusuf Haque' },
+  { table: 'Table 26', name: 'Mr Fahd Omar' },
+  { table: 'Table 26', name: 'Mr Shogo Washio' },
+  { table: 'Table 26', name: 'Mr Harrison Mitchell' },
+  { table: 'Table 26', name: 'Mr Isaac Akinduro' },
+  { table: 'Table 26', name: 'Mr Ismaeel Zia' },
+  { table: 'Table 26', name: 'Mr Amir Rafati Fard' },
+
+  { table: 'Table 27', name: 'Boro Sasa' },
+  { table: 'Table 27', name: 'Sasi Ama' },
+  { table: 'Table 27', name: 'Saima Afa FIL' },
+  { table: 'Table 27', name: 'Saima Afa MIL' },
+  { table: 'Table 27', name: 'Laal Sasa' },
+  { table: 'Table 27', name: 'Amina Aunty' },
+  { table: 'Table 27', name: 'Soto Khofo' },
+  { table: 'Table 27', name: 'Sasa' },
+  { table: 'Table 27', name: 'Tanish FIL' },
+  { table: 'Table 27', name: 'Tanish MIL' },
+  { table: 'Table 27', name: 'Anika' },
+  { table: 'Table 27', name: 'Shakib' },
+
+  { table: 'Table 28', name: 'Suto Sasa' },
+  { table: 'Table 28', name: 'Boma' },
+  { table: 'Table 28', name: 'Ayana' },
+  { table: 'Table 28', name: 'Boro Khofo' },
+  { table: 'Table 28', name: 'Boro Mama' },
+  { table: 'Table 28', name: 'Booboo MIL' },
+  { table: 'Table 28', name: 'Booboo FIL' },
+  { table: 'Table 28', name: 'Booboo' },
+  { table: 'Table 28', name: 'Khairol Dulhabai' },
+  { table: 'Table 28', name: 'Inayah' },
+  { table: 'Table 28', name: 'Sara' },
+  { table: 'Table 28', name: 'Ruhel Baiyah' },
+  { table: 'Table 28', name: 'Suto Bhaisab' },
+  { table: 'Table 28', name: 'Isra' },
+  { table: 'Table 28', name: 'Bhabi' },
+
+  { table: 'Table 29', name: 'Saima Afa' },
+  { table: 'Table 29', name: 'Abdul Muktadir Dulhabai' },
+  { table: 'Table 29', name: 'Alesia' },
+  { table: 'Table 29', name: 'Tanisha' },
+  { table: 'Table 29', name: 'Ish' },
+  { table: 'Table 29', name: 'Ibrahim Baiyah' },
+  { table: 'Table 29', name: 'Nusaiba' },
+  { table: 'Table 29', name: 'Naheeda' },
+  { table: 'Table 29', name: 'Anisa' },
+  { table: 'Table 29', name: 'Ameera' },
+
+  { table: 'Table 30', name: 'Boro Mama' },
+  { table: 'Table 30', name: 'Boro Mami' },
+  { table: 'Table 30', name: 'Suto Mama' },
+  { table: 'Table 30', name: 'Zakya Khala' },
+  { table: 'Table 30', name: 'Suto Khala' },
+  { table: 'Table 30', name: 'Suto Khalu' },
+  { table: 'Table 30', name: 'Hasna Khala' },
+  { table: 'Table 30', name: 'Mursaleen' },
+  { table: 'Table 30', name: 'Sorwar Mama' },
+  { table: 'Table 30', name: 'Mufaasir' },
+  { table: 'Table 30', name: 'Fabeeha' },
+  { table: 'Table 30', name: 'Moaz' },
+
+  { table: 'Table 31', name: 'Habiba' },
+  { table: 'Table 31', name: 'Tayyaba' },
+  { table: 'Table 31', name: 'Masum Baiyah' },
+  { table: 'Table 31', name: 'Shanaz Bhabi' },
+  { table: 'Table 31', name: 'Tahmid' },
+  { table: 'Table 31', name: 'Nabiha' },
+  { table: 'Table 31', name: 'Akeefa' },
+  { table: 'Table 31', name: 'Mudhabir' },
+  { table: 'Table 31', name: 'Suhayma' },
+  { table: 'Table 31', name: 'Seema' },
+  { table: 'Table 31', name: 'Ayaz' },
+  { table: 'Table 31', name: 'Jahed' },
+
+  { table: 'Table 32', name: 'Shima' },
+  { table: 'Table 32', name: 'Fatima' },
+  { table: 'Table 32', name: 'Sanjidah' },
+  { table: 'Table 32', name: 'Ferdousi' },
+  { table: 'Table 32', name: 'Tasnuba' },
+  { table: 'Table 32', name: 'Samira' },
+  { table: 'Table 32', name: 'Nusrat' },
+
+  { table: 'Table 33', name: 'Abul Dulhabai Dad' },
+  { table: 'Table 33', name: 'Abul Dulhabai Mum' },
+  { table: 'Table 33', name: 'Saquib Dulhabai Dad' },
+  { table: 'Table 33', name: 'Saquib Dulhabai Mum' },
+  { table: 'Table 33', name: 'Saquib Dulhabi Oldest Brother' },
+  { table: 'Table 33', name: 'Saquib Dulhabi Oldest SIL' },
+  { table: 'Table 33', name: 'Aleena' },
+  { table: 'Table 33', name: 'Mikaeel' },
+  { table: 'Table 33', name: 'Uzair' },
+  { table: 'Table 33', name: 'Saquib Dulhabi Youngest Brother' },
+  { table: 'Table 33', name: 'Saquib Dulhabi Youngest SIL' },
+  { table: 'Table 33', name: 'Aya' },
+  { table: 'Table 33', name: 'Baby' },
+
+  { table: 'Table 34', name: 'Luton Dadasaab' },
+  { table: 'Table 34', name: 'Luton Dadisaab' },
+  { table: 'Table 34', name: 'Mustaq Sasa' },
+  { table: 'Table 34', name: 'Luton Sasi' },
+  { table: 'Table 34', name: 'Luton Sasa' },
+  { table: 'Table 34', name: 'Salma' },
+  { table: 'Table 34', name: 'Salma Husband' },
+  { table: 'Table 34', name: 'Salma Child 1' },
+  { table: 'Table 34', name: 'Salma Child 2' },
+  { table: 'Table 34', name: 'Salma Child 3' },
+
+  { table: 'Table 35', name: 'Dadu / Sadia Mum' },
+  { table: 'Table 35', name: 'Dada / Sadia Dad' },
+  { table: 'Table 35', name: 'Sadia' },
+  { table: 'Table 35', name: 'Hameem' },
+  { table: 'Table 35', name: 'Maryam' },
+  { table: 'Table 35', name: 'Jackie' },
+  { table: 'Table 35', name: 'Anju' },
+  { table: 'Table 35', name: 'Dada Anju Dad' },
+  { table: 'Table 35', name: 'Dadu / Anju Mum' },
+  { table: 'Table 35', name: 'Eesa' },
+
+  { table: 'Table 36', name: 'Naheema Aunty' },
+  { table: 'Table 36', name: 'Naheema Aunty Husband' },
+  { table: 'Table 36', name: 'Naheema Aunty Son' },
+  { table: 'Table 36', name: 'Abtahi' },
+  { table: 'Table 36', name: 'Abtahi Wife' },
+  { table: 'Table 36', name: 'Doli Khofo' },
+  { table: 'Table 36', name: 'Doli Khofo Oldest Son' },
+  { table: 'Table 36', name: 'Doli Khofo Middle Son' },
+  { table: 'Table 36', name: 'Doli Khofo Youngest Son' },
+
+  { table: 'Table 37', name: 'Shaeen Khofo, Parveen Khofo and Rogin Bhai' },
+  { table: 'Table 37', name: 'Sheen Khofo' },
+  { table: 'Table 37', name: 'Shaeen Mama' },
+  { table: 'Table 37', name: 'Nadiyah' },
+  { table: 'Table 37', name: 'Parveen Khofo 1' },
+  { table: 'Table 37', name: 'Parveen Khofo 2' },
+  { table: 'Table 37', name: 'Parveen Khofo 3' },
+  { table: 'Table 37', name: 'Parveen Khofo 4' },
+  { table: 'Table 37', name: 'Parveen Khofo 5' },
+  { table: 'Table 37', name: 'Parveen Khofo 6' },
+  { table: 'Table 37', name: 'Parveen Khofo 7' },
+  { table: 'Table 37', name: 'Parveen Khofo 8 / Rogin Bhai' },
+  { table: 'Table 37', name: 'Parveen Khofo 9 / Rogin Bhai' },
+
+  { table: 'Table 38', name: 'Family of Ferdous Sasa + Rima Aunty, Family of Koli Khofo' },
+  { table: 'Table 38', name: 'Family of Rogin Bhai' },
+  { table: 'Table 38', name: 'Rima Aunty' },
+  { table: 'Table 38', name: 'Ferdous Sasa' },
+  { table: 'Table 38', name: 'Daughter' },
+  { table: 'Table 38', name: 'Ibrahim' },
+  { table: 'Table 38', name: 'Daughter' },
+  { table: 'Table 38', name: 'Koli Khofo' },
+  { table: 'Table 38', name: 'Koli Khofo Husband' },
+  { table: 'Table 38', name: 'Uzair' },
+  { table: 'Table 38', name: 'Rayaan' },
+  { table: 'Table 38', name: 'Rogin Bhai' },
+  { table: 'Table 38', name: 'Rogin Bhai' },
+  { table: 'Table 38', name: 'Rogin Bhai' },
+
+  { table: 'Table 39', name: 'Moshod Sasa' },
+  { table: 'Table 39', name: 'Moshod Sasa Wife' },
+  { table: 'Table 39', name: 'Family of Moshod Sasa' },
+  { table: 'Table 39', name: 'Canning Town Dadi' },
+  { table: 'Table 39', name: 'Family of Sami Uddin' },
+];
+
+// --- SEATING PLAN SEARCH ---
+(function() {
+  var input = document.getElementById('seating-search');
+  var dropdown = document.getElementById('seating-dropdown');
+  var resultEl = document.getElementById('seating-result');
+  var toggleBtn = document.getElementById('seating-toggle-btn');
+  var fullEl = document.getElementById('seating-full');
+  if (!input) return;
+
+  function showResult(entry) {
+    resultEl.innerHTML =
+      '<div class="seating-result-table">' + entry.table + '</div>' +
+      '<div class="seating-result-name">' + entry.name + '</div>';
+    resultEl.classList.add('show');
+  }
+
+  function hideResult() {
+    resultEl.classList.remove('show');
+    resultEl.innerHTML = '';
+  }
+
+  function renderDropdown(matches) {
+    dropdown.innerHTML = '';
+    if (matches.length === 0) {
+      dropdown.innerHTML = '<div class="seating-dropdown-empty">No matches — try your surname or family name</div>';
+    } else {
+      matches.slice(0, 8).forEach(function(entry) {
+        var item = document.createElement('div');
+        item.className = 'seating-dropdown-item';
+        item.textContent = entry.name + ' — ' + entry.table;
+        item.addEventListener('mousedown', function(e) {
+          e.preventDefault();
+          input.value = entry.name;
+          showResult(entry);
+          dropdown.classList.remove('open');
+        });
+        dropdown.appendChild(item);
+      });
+    }
+    dropdown.classList.add('open');
+  }
+
+  input.addEventListener('input', function() {
+    var query = input.value.trim().toLowerCase();
+    if (query.length === 0) {
+      dropdown.classList.remove('open');
+      hideResult();
+      return;
+    }
+    var matches = SEATING.filter(function(entry) {
+      return entry.name.toLowerCase().indexOf(query) !== -1;
+    });
+    renderDropdown(matches);
+  });
+
+  input.addEventListener('blur', function() {
+    setTimeout(function() { dropdown.classList.remove('open'); }, 120);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') dropdown.classList.remove('open');
+  });
+
+  // --- FULL TABLE PLAN TOGGLE ---
+  var built = false;
+  function buildFullPlan() {
+    var order = [];
+    var byTable = {};
+    SEATING.forEach(function(entry) {
+      if (!byTable[entry.table]) {
+        byTable[entry.table] = [];
+        order.push(entry.table);
+      }
+      byTable[entry.table].push(entry.name);
+    });
+    fullEl.innerHTML = order.map(function(table) {
+      var names = byTable[table].map(function(n) { return '<li>' + n + '</li>'; }).join('');
+      return '<div class="seating-table-group"><div class="seating-table-heading">' + table + '</div><ul class="seating-table-names">' + names + '</ul></div>';
+    }).join('');
+    built = true;
+  }
+
+  toggleBtn.addEventListener('click', function() {
+    if (!built) buildFullPlan();
+    var isHidden = fullEl.hasAttribute('hidden');
+    if (isHidden) {
+      fullEl.removeAttribute('hidden');
+      toggleBtn.textContent = 'Hide Full Table Plan';
+    } else {
+      fullEl.setAttribute('hidden', '');
+      toggleBtn.textContent = 'View Full Table Plan';
+    }
+  });
+})();
+
+// --- QUIZ ---
+const QUESTIONS = [
+  { q: 'Who is more organised?', ans: 'Nasser' },
+  { q: 'Who is funnier?', ans: 'Farzana' },
+  { q: "Who's the bigger romantic?", ans: 'Farzana' },
+  { q: 'Who likes to plan things more?', ans: 'Nasser' },
+  { q: "Who's better with money?", ans: 'Farzana' },
+  { q: 'Who is more outgoing?', ans: 'Nasser' },
+];
+let qIdx = 0, quizScore = 0, quizRevealed = false;
+
+function burstConfetti(originEl) {
+  const rect = originEl.getBoundingClientRect();
+  const cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+  document.body.appendChild(canvas);
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  const cols = ['#C9A96E','#E8D5A3','#FFD700','#F5EFE6','#D4C4B0'];
+  const pts = Array.from({length:55}, () => ({
+    x:cx, y:cy, vx:(Math.random()-0.5)*15, vy:(Math.random()-0.75)*13,
+    size:Math.random()*5+3, color:cols[Math.floor(Math.random()*cols.length)],
+    rot:Math.random()*360, rotV:(Math.random()-0.5)*10, alpha:1
+  }));
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive = false;
+    pts.forEach(p => {
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.42; p.rot+=p.rotV; p.alpha-=0.015;
+      if (p.alpha > 0) {
+        alive = true;
+        ctx.save(); ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.translate(p.x, p.y); ctx.rotate(p.rot*Math.PI/180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size*0.3, p.size, p.size*0.55);
+        ctx.restore();
+      }
+    });
+    if (alive) requestAnimationFrame(draw); else canvas.remove();
+  }
+  draw();
+}
+
+function showQuestion(i) {
+  const q = QUESTIONS[i];
+  const card = document.getElementById('quiz-card');
+  document.getElementById('quiz-prog-label').textContent = 'Question '+(i+1)+' of '+QUESTIONS.length;
+  document.getElementById('quiz-prog-fill').style.width = ((i/QUESTIONS.length)*100)+'%';
+  function loadContent() {
+    document.getElementById('quiz-q-text').textContent = q.q;
+    ['qbtn-nasser','qbtn-farzana'].forEach(id => {
+      const b = document.getElementById(id); b.className = 'qbtn'; b.disabled = false;
+    });
+  }
+  if (!quizRevealed) {
+    loadContent();
+  } else {
+    card.classList.remove('revealed');
+    card.classList.add('flip-out');
+    setTimeout(() => {
+      loadContent();
+      card.classList.remove('flip-out');
+      requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('revealed')));
+    }, 280);
+  }
+}
+
+function handleQuizAnswer(chosen) {
+  const q = QUESTIONS[qIdx];
+  if (chosen === q.ans) {
+    quizScore++;
+    burstConfetti(document.getElementById('qbtn-'+q.ans.toLowerCase()));
+  }
+  document.getElementById('qbtn-nasser').className = 'qbtn '+(q.ans==='Nasser'?'correct':'wrong');
+  document.getElementById('qbtn-farzana').className = 'qbtn '+(q.ans==='Farzana'?'correct':'wrong');
+  ['qbtn-nasser','qbtn-farzana'].forEach(id => { document.getElementById(id).disabled = true; });
+  setTimeout(() => {
+    qIdx++;
+    if (qIdx < QUESTIONS.length) {
+      showQuestion(qIdx);
+    } else {
+      document.getElementById('quiz-prog-fill').style.width = '100%';
+      document.getElementById('quiz-prog-label').textContent = 'Complete!';
+      document.getElementById('quiz-card').style.display = 'none';
+      const msgs = [
+        'Please re-read the invitation. And maybe this whole website.',
+        'Please re-read the invitation. And maybe this whole website.',
+        'Hmm. Did we even invite you?',
+        'Hmm. Did we even invite you?',
+        "Not bad - you've clearly been paying attention",
+        'You really know us! Save us a seat at the top table 👀',
+        'Absolute legends. Front row. Best man / maid of honour energy.'
+      ];
+      document.getElementById('sc-num').textContent = quizScore+' / '+QUESTIONS.length;
+      document.getElementById('sc-msg').textContent = msgs[quizScore];
+      const box = document.getElementById('quiz-score'); box.classList.add('show');
+      box.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      if (window._db) {
+        window._db.collection('quiz_attempts').add({ score: quizScore, total: QUESTIONS.length, ts: firebase.firestore.FieldValue.serverTimestamp() });
+      }
+    }
+  }, 1100);
+}
+
+document.getElementById('qbtn-nasser').addEventListener('click', () => handleQuizAnswer('Nasser'));
+document.getElementById('qbtn-farzana').addEventListener('click', () => handleQuizAnswer('Farzana'));
+showQuestion(0);
+
+const quizRevealObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !quizRevealed) {
+    quizRevealed = true;
+    setTimeout(() => document.getElementById('quiz-card').classList.add('revealed'), 350);
+    quizRevealObs.disconnect();
+  }
+}, { threshold: 0.3 });
+quizRevealObs.observe(document.getElementById('quiz'));
+
+// --- STATS CARD SLIDE-IN ---
+(function() {
+  const grid = document.getElementById('sgrid');
+  if (!grid) return;
+  const cards = [...grid.querySelectorAll('.trump-card')];
+  let activeTimeouts = [];
+
+  function clearTimers() { activeTimeouts.forEach(clearTimeout); activeTimeouts = []; }
+
+  const obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      clearTimers();
+      cards.forEach(function(card, i) {
+        activeTimeouts.push(setTimeout(function() { card.classList.add('card-in'); }, i * 280));
+      });
+    } else {
+      clearTimers();
+      // Reverse stagger: right card slides out first, then left
+      cards.slice().reverse().forEach(function(card, i) {
+        activeTimeouts.push(setTimeout(function() { card.classList.remove('card-in'); }, i * 180));
+      });
+    }
+  }, { threshold: 0.2 });
+  obs.observe(grid);
+})();
+
+// Equalise stat row heights so border lines align across both cards
+(function() {
+  function equaliseRows() {
+    var stats = document.querySelectorAll('#sgrid .trump-stats');
+    if (stats.length < 2) return;
+    var rowsA = stats[0].querySelectorAll('.trump-row');
+    var rowsB = stats[1].querySelectorAll('.trump-row');
+    var n = Math.min(rowsA.length, rowsB.length);
+    for (var i = 0; i < n; i++) {
+      rowsA[i].style.minHeight = '';
+      rowsB[i].style.minHeight = '';
+      var h = Math.max(rowsA[i].offsetHeight, rowsB[i].offsetHeight);
+      rowsA[i].style.minHeight = h + 'px';
+      rowsB[i].style.minHeight = h + 'px';
+    }
+  }
+  window.addEventListener('load', equaliseRows);
+  window.addEventListener('resize', equaliseRows);
+})();
+
+// --- ACCORDION ---
+document.querySelectorAll('.acc-head').forEach(head => {
+  head.addEventListener('click', () => {
+    const item = head.parentElement;
+    const body = item.querySelector('.acc-body');
+    const arrow = head.querySelector('.acc-arrow');
+    const ansEl = body.querySelector('.acc-a');
+    const isOpen = body.classList.contains('open');
+
+    document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.acc-arrow').forEach(a => a.classList.remove('open'));
+
+    if (!isOpen) {
+      body.classList.add('open');
+      arrow.classList.add('open');
+      if (!ansEl.dataset.text) ansEl.dataset.text = ansEl.textContent;
+      const chars = Array.from(ansEl.dataset.text);
+      ansEl.textContent = '';
+      let ci = 0;
+      const iv = setInterval(() => {
+        ansEl.textContent = chars.slice(0, ++ci).join('');
+        if (ci >= chars.length) clearInterval(iv);
+      }, 16);
+    }
+  });
+});
+
+// --- ADMIN ---
+(function() {
+  var unsubs = [];
+
+  function escHtml(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  async function sha256(msg) {
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+    return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  window.adminLogin = async function() {
+    var pw = document.getElementById('admin-pw').value;
+    var hash = await sha256(pw);
+    if (hash === window.WEDDING_CONFIG.adminHash) {
+      document.getElementById('admin-login-box').style.display = 'none';
+      document.getElementById('admin-content').style.display = 'block';
+      loadAdminData();
+    } else {
+      var err = document.getElementById('admin-err');
+      err.style.display = 'block';
+      setTimeout(function() { err.style.display = 'none'; }, 3000);
+    }
+  };
+
+  window.adminClose = function() {
+    document.getElementById('admin-overlay').style.display = 'none';
+    document.getElementById('admin-pw').value = '';
+    document.getElementById('admin-err').style.display = 'none';
+    document.getElementById('admin-login-box').style.display = 'block';
+    document.getElementById('admin-content').style.display = 'none';
+    unsubs.forEach(function(u) { u(); });
+    unsubs = [];
+  };
+
+  window.adminDelete = function(col, id) {
+    if (!confirm('Delete this entry?')) return;
+    window._db.collection(col).doc(id).delete();
+  };
+
+  function loadAdminData() {
+    // Quiz attempts
+    unsubs.push(
+      window._db.collection('quiz_attempts').orderBy('ts', 'desc').onSnapshot(function(snap) {
+        var totalEl = document.getElementById('admin-quiz-total');
+        var gridEl = document.getElementById('admin-quiz-grid');
+        var listEl = document.getElementById('admin-quiz-list');
+        totalEl.textContent = snap.size + ' total attempt' + (snap.size !== 1 ? 's' : '');
+        var counts = [0,0,0,0,0,0,0];
+        snap.forEach(function(doc) { var s = doc.data().score; if (s >= 0 && s <= 6) counts[s]++; });
+        gridEl.innerHTML = '';
+        for (var s = 0; s <= 6; s++) {
+          gridEl.innerHTML += '<div class="qsg-cell"><div class="qsg-score">' + s + '/6</div><div class="qsg-count">' + counts[s] + '</div></div>';
+        }
+        listEl.innerHTML = snap.empty ? '<p style="color:var(--text-sec);font-size:.85rem">No attempts yet</p>' : '';
+        snap.forEach(function(doc) {
+          var d = doc.data();
+          var ts = d.ts ? new Date(d.ts.seconds * 1000).toLocaleString('en-GB') : '-';
+          var el = document.createElement('div');
+          el.className = 'admin-entry';
+          el.innerHTML = '<span class="admin-entry-text">Score: <strong>' + d.score + ' / ' + d.total + '</strong> &nbsp;<span style="opacity:.45;font-size:.78em">' + ts + '</span></span>';
+          listEl.appendChild(el);
+        });
+      })
+    );
+
+    // Travel suggestions
+    unsubs.push(
+      window._db.collection('recs').orderBy('ts').onSnapshot(function(snap) {
+        var listEl = document.getElementById('admin-recs-list');
+        listEl.innerHTML = snap.empty ? '<p style="color:var(--text-sec);font-size:.85rem">No suggestions yet</p>' : '';
+        snap.forEach(function(doc) {
+          var d = doc.data();
+          var el = document.createElement('div');
+          el.className = 'admin-entry';
+          el.innerHTML = '<span class="admin-entry-text"><strong>' + escHtml(d.destination) + '</strong><br><span style="opacity:.65">' + escHtml(d.things_to_do) + '</span></span>' +
+            '<button class="admin-del-btn" onclick="adminDelete(\'recs\',\'' + doc.id + '\')">Delete</button>';
+          listEl.appendChild(el);
+        });
+      })
+    );
+
+    // Date night ideas
+    unsubs.push(
+      window._db.collection('date_nights').orderBy('ts').onSnapshot(function(snap) {
+        var listEl = document.getElementById('admin-dates-list');
+        listEl.innerHTML = snap.empty ? '<p style="color:var(--text-sec);font-size:.85rem">No ideas yet</p>' : '';
+        snap.forEach(function(doc) {
+          var d = doc.data();
+          var el = document.createElement('div');
+          el.className = 'admin-entry';
+          el.innerHTML = '<span class="admin-entry-text">' + escHtml(d.idea) + '</span>' +
+            '<button class="admin-del-btn" onclick="adminDelete(\'date_nights\',\'' + doc.id + '\')">Delete</button>';
+          listEl.appendChild(el);
+        });
+      })
+    );
+  }
+})();
+</script>
+</body>
+</html>
