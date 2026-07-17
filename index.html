@@ -739,8 +739,8 @@
       <div class="seating-dropdown" id="seating-dropdown"></div>
     </div>
     <p class="seating-hint">
-      Some guests are listed individually and some as a family group (e.g. &ldquo;Family of Smith&rdquo;) &mdash;
-      if you can't find your own name, try searching your surname or family name instead.
+      Scan the QR code and search your name to find your table number.<br>
+      Note: Guests may be listed by their individual name or as part of a family group (e.g. &ldquo;Mr Nasser Chowdhury&rdquo;, &ldquo;Family of Tahseen Chowdhury&rdquo; or &ldquo;Family of Boro Sasa&rdquo;)
     </p>
 
     <div class="seating-result" id="seating-result"></div>
@@ -1378,7 +1378,15 @@ const SEATING = [
   var resultEl = document.getElementById('seating-result');
   var toggleBtn = document.getElementById('seating-toggle-btn');
   var fullEl = document.getElementById('seating-full');
+  var section = document.getElementById('seating');
   if (!input) return;
+
+  function sizeDropdown() {
+    var margin = 12;
+    var available = section.getBoundingClientRect().bottom - input.getBoundingClientRect().bottom - margin;
+    var maxH = Math.max(120, Math.min(260, available));
+    dropdown.style.maxHeight = maxH + 'px';
+  }
 
   function showResult(entry) {
     resultEl.innerHTML =
@@ -1410,6 +1418,7 @@ const SEATING = [
         dropdown.appendChild(item);
       });
     }
+    sizeDropdown();
     dropdown.classList.add('open');
   }
 
@@ -1432,6 +1441,10 @@ const SEATING = [
 
   input.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') dropdown.classList.remove('open');
+  });
+
+  window.addEventListener('resize', function() {
+    if (dropdown.classList.contains('open')) sizeDropdown();
   });
 
   // --- FULL TABLE PLAN TOGGLE ---
